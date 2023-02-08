@@ -1,5 +1,5 @@
 import Logo from '../Components/Logo';
-import heroImageMobile from '../Assets/Hero-Image-Mobile.jpg';
+import heroImageMobile from '../Assets/Hero-Image-mobile.jpg';
 import heroImageDesktop from '../Assets/Hero-Image-Desktop.jpg';
 import checkMark from '../Assets/Checkmark.svg';
 import airbnb from '../Assets/Airbnb.svg';
