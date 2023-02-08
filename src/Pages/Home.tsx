@@ -18,7 +18,7 @@ const Home = () => {
             <section className='p-4 sm:p-8  md:flex-[60%] md:flex md:items-center'>
                 <article className='lg:w-3/4 mx-auto'>
                     <span className='hidden md:block md:absolute md:top-6'><Logo /></span>
-                    <h3 className='text-3xl sm:text-4xl font-bold'>Explore the best camps on Earth.</h3>
+                    <h3 className='text-3xl sm:text-4xl md:text-5xl font-bold'>Explore the best camps on Earth.</h3>
                     <p className='text-dark my-3'>YelpCamp is a curated list of the best camping spot on Earth. Unfiltered and unbiased reviews.</p>
                     <section>
                         <div className='flex gap-3 items-center text-dark'>
@@ -34,7 +34,7 @@ const Home = () => {
                             <p> See locations for all camps.</p>
                         </div>
                     </section>
-                    <Link to='/'><button className='p-4 text-white bg-black my-4 rounded-sm'> View Campgrounds </button></Link>
+                    <Link to='/'><button className='p-4 text-white bg-black my-4 rounded-md hover:translate-x-1'> View Campgrounds </button></Link>
                     <div>
                         <p>Partnered with:</p>
                         <div className=''>
