@@ -1,10 +1,10 @@
 import Logo from '../Components/Logo';
-import heroImageMobile from '../Assets/Hero-Image-mobile.jpg';
-import heroImageDesktop from '../Assets/Hero-Image-Desktop.jpg';
-import checkMark from '../Assets/Checkmark.svg';
-import airbnb from '../Assets/Airbnb.svg';
-import booking from '../Assets/Booking.svg';
-import plumGuide from '../Assets/Plum-Guide.svg';
+import heroImageMobile from '../assets/Hero-Image-mobile.jpg';
+import heroImageDesktop from '../assets/Hero-Image-Desktop.jpg';
+import checkMark from '../assets/Checkmark.svg';
+import airbnb from '../assets/Airbnb.svg';
+import booking from '../assets/Booking.svg';
+import plumGuide from '../assets/Plum-Guide.svg';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
