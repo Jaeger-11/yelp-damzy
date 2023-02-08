@@ -34,7 +34,7 @@ const Home = () => {
                             <p> See locations for all camps.</p>
                         </div>
                     </section>
-                    <Link to='/'><button className='p-4 text-white bg-black my-4 rounded-md hover:translate-x-1'> View Campgrounds </button></Link>
+                    <Link to='/campgrounds'><button className='p-4 text-white bg-black my-4 rounded-md hover:translate-x-1'> View Campgrounds </button></Link>
                     <div>
                         <p>Partnered with:</p>
                         <div className=''>
