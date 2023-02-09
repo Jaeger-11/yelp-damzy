@@ -1,21 +1,43 @@
 import Logo from "./Logo";
-import hamburger from "../assets/Hamburger.svg"
+import hamburger from "../assets/Hamburger.svg";
+import close from '../assets/Close.svg';
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [clicked, setClicked] = useState(false);
+  const toggleClicked = () => {
+    setClicked(!clicked);
+  }
+
   return (
-    <nav className="container mx-auto font-archivo text-lightgray flex justify-between items-center my-8">
+    <nav className="container px-4 mx-auto font-archivo text-lightgray flex justify-between items-center my-8 md:px-0">
         <div className="flex gap-6 items-center">
             <Logo />
-            <Link to='/' className="hidden font-bold md:block">Home</Link>
+            <Link to='/' className="hidden font-bold md:block hover:text-highlight">Home</Link>
         </div>
 
         <div className="hidden md:block">
-            <Link to='/login'> Login </Link>
-            <Link to='/signup' className="text-white bg-black p-4 rounded-md ml-4">Create an account</Link>
+            <Link to='/login' className="hover:text-highlight"> Login </Link>
+            <Link to='/signup' className="text-white bg-black p-4 rounded-md ml-4 hover:text-highlight">Create an account</Link>
         </div>
 
-        <img src={hamburger} alt="hamburger menu" className="md:hidden" />
+        <div className="text-lightgray hidden md:block">
+          <span className="font-bold"> user </span>
+          <span className="ml-4 hover:text-highlight">Logout</span>
+        </div>
+
+        { clicked ? 
+        <img src={close} alt="close" onClick={toggleClicked}/> : 
+        <img src={hamburger} alt="hamburger menu" className="md:hidden" onClick={toggleClicked}/> 
+        }
+
+        { clicked ? <section className="absolute flex px-4 py-8 flex-col text-black gap-6 rounded-md top-6 right-4 w-2/3 bg-[#f5f1ec] md:hidden">
+        <img src={close} alt="close menu" className=" absolute top-4 right-4 md:hidden" onClick={toggleClicked}/> 
+          <p> <Link to='/'>Home</Link> </p>
+          <p> <Link to='/login'> Login </Link> </p>
+          <p> <Link to='/signup' className="text-white bg-black p-4 rounded-md hover:text-highlight">Create an account</Link> </p>
+        </section> : null }
     </nav>
   )
 }
