@@ -5,6 +5,7 @@ import Login from './Pages/Login'
 import Campgrounds from './Pages/Campgrounds'
 import Signup from './Pages/Signup'
 import AddCampground from './Pages/AddCampground'
+import AddComment from './Pages/AddComment'
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/campgrounds' element={<Campgrounds/>} />
         <Route path='/addcampground' element={<AddCampground/>} />
+        <Route path='/addcomment' element={<AddComment/>}/>
       </Routes>
     </BrowserRouter>
   )
