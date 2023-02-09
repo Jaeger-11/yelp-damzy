@@ -11,7 +11,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="container px-4 mx-auto font-archivo text-lightgray flex justify-between items-center my-8 md:px-0">
+    <nav className=" mx-auto font-archivo text-lightgray flex justify-between items-center my-4 md:my-6 md:px-0">
         <div className="flex gap-6 items-center">
             <Logo />
             <Link to='/' className="hidden font-bold md:block hover:text-highlight">Home</Link>
@@ -29,11 +29,11 @@ const Navbar = () => {
 
         { clicked ? 
         <img src={close} alt="close" onClick={toggleClicked}/> : 
-        <img src={hamburger} alt="hamburger menu" className="md:hidden" onClick={toggleClicked}/> 
+        <img src={hamburger} alt="hamburger menu" className=" p-1 bg-[#f5f1ec] md:hidden" onClick={toggleClicked}/> 
         }
 
-        { clicked ? <section className="absolute flex px-4 py-8 flex-col text-black gap-6 rounded-md top-6 right-4 w-2/3 bg-[#f5f1ec] md:hidden">
-        <img src={close} alt="close menu" className=" absolute top-4 right-4 md:hidden" onClick={toggleClicked}/> 
+        { clicked ? <section className="absolute flex text-center px-4 py-8 flex-col text-black gap-6 rounded-md top-4 right-4 w-max bg-[#f5f1ec] md:hidden">
+        <img src={close} alt="close menu" className=" absolute top-3 w-3 h-3 right-3 md:hidden" onClick={toggleClicked}/> 
           <p> <Link to='/'>Home</Link> </p>
           <p> <Link to='/login'> Login </Link> </p>
           <p> <Link to='/signup' className="text-white bg-black p-4 rounded-md hover:text-highlight">Create an account</Link> </p>
