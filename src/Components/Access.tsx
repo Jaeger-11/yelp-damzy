@@ -1,9 +1,10 @@
 import Logo from "./Logo";
 import arrowleft from "../assets/icons8-arrow-left-25.png";
 import { Link } from "react-router-dom";
-import userTestimonial from "../assets/User-Testimonial.svg"
+import userTestimonial from "../assets/User-Testimonial.svg";
+import { AccessProps } from "../Global/interface";
 
-const Access = () => {
+const Access = (data : AccessProps) => {
   return (
     <div className="md:flex md:min-h-screen">
         <section className="p-4 font-archivo sm:p-8 md:relative md:flex md:justify-center md:items-center md:flex-[60%] md:p-0">
@@ -26,8 +27,8 @@ const Access = () => {
                         className="p-3 my-2 w-full text-lightgray focus:outline-none bg-gray-100"/>
                     </div>
 
-                    <button className="text-white bg-black p-4 w-full font-bold rounded-md my-4 hover:translate-x-1"> Access </button>
-                    <p className="text-lightgray">Not a user yet? <Link to='/' className="text-highlight underline font-bold"> Access </Link></p>
+                    <button onClick={data.functionName} className="text-white bg-black p-4 w-full font-bold rounded-md my-4 hover:translate-x-1"> {data.text} </button>
+                    <p className="text-lightgray">Not a user yet? <Link to={data.optionPath} className="text-highlight underline font-bold"> {data.option} </Link></p>
                 </form>
             </article>
             

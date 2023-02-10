@@ -2,9 +2,16 @@ import React from 'react'
 import Access from "../Components/Access"
 
 const Login = () => {
+  const loginProps = {
+    text : 'Login',
+    option : 'Create an account',
+    functionName: "",
+    optionPath: "/signup"
+  }
+  
   return (
     <div>
-        <Access />
+        <Access {...loginProps}/>
     </div>
   )
 }
