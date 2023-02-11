@@ -1,10 +1,25 @@
 import Logo from "./Logo";
 import arrowleft from "../assets/icons8-arrow-left-25.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import userTestimonial from "../assets/User-Testimonial.svg";
 import { AccessProps } from "../Global/interface";
+import {useState} from 'react';
+import { auth } from "../Database/config";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 const Access = (data : AccessProps) => {
+    const navigate = useNavigate();
+    const [ userData, setUserData ] = useState<object>();
+
+    const handleInput = ({target}: React.ChangeEvent<HTMLInputElement>) => {
+        let newUserData = { [target.name] : [target.value] }
+        setUserData({...userData, ...newUserData})
+    }
+
+    const handleSubmit = () => {
+
+    }
+
   return (
     <div className="md:flex md:min-h-screen">
         <section className="p-4 font-archivo sm:p-8 md:relative md:flex md:justify-center md:items-center md:flex-[60%] md:p-0">
@@ -19,11 +34,13 @@ const Access = (data : AccessProps) => {
                     <div>
                         <label htmlFor="username">Username</label> <br />
                         <input type="text" placeholder="username" id="username" name="username" 
+                        onChange={handleInput}
                         className="p-3 my-2 w-full text-lightgray focus:outline-none bg-gray-100"/>
                     </div>
                     <div>
                         <label htmlFor="password">Password</label> <br />
                         <input type="password" name="password" id="password" placeholder="Enter Your Password" 
+                        onChange={handleInput}
                         className="p-3 my-2 w-full text-lightgray focus:outline-none bg-gray-100"/>
                     </div>
 
