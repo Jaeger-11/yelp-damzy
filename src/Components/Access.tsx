@@ -2,22 +2,47 @@ import Logo from "./Logo";
 import arrowleft from "../assets/icons8-arrow-left-25.png";
 import { Link, useNavigate } from "react-router-dom";
 import userTestimonial from "../assets/User-Testimonial.svg";
-import { AccessProps } from "../Global/interface";
-import {useState} from 'react';
+import { AccessProps, InputProps } from "../Global/interface";
+import React, {useState} from 'react';
 import { auth } from "../Database/config";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Access = (data : AccessProps) => {
     const navigate = useNavigate();
-    const [ userData, setUserData ] = useState<object>();
+    const [ userData, setUserData ] = useState<InputProps>({username:"", password:""});
 
     const handleInput = ({target}: React.ChangeEvent<HTMLInputElement>) => {
         let newUserData = { [target.name] : [target.value] }
         setUserData({...userData, ...newUserData})
     }
 
-    const handleSubmit = () => {
+    const handleLoginSubmit = (e:React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        signInWithEmailAndPassword(auth, userData.username, userData.password)
+          .then((userCredential) => {
+            const user = userCredential.user
+            navigate('/campgrounds')
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert([errorCode, errorMessage])
+          });
+    }
 
+    const handleSignupSubmit = (e:React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        createUserWithEmailAndPassword(auth, userData.username, userData.password)
+            .then((userCredential) => {
+                const user = userCredential.user
+                console.log(user)
+                navigate('/campgrounds')
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert([errorCode, errorMessage])
+              });
     }
 
   return (
@@ -44,7 +69,7 @@ const Access = (data : AccessProps) => {
                         className="p-3 my-2 w-full text-lightgray focus:outline-none bg-gray-100"/>
                     </div>
 
-                    <button onClick={data.functionName} className="text-white bg-black p-4 w-full font-bold rounded-md my-4 hover:translate-x-1"> {data.text} </button>
+                    <button onClick={data.functionName === 'login' ? handleLoginSubmit : handleSignupSubmit} className="text-white bg-black p-4 w-full font-bold rounded-md my-4 hover:translate-x-1"> {data.text} </button>
                     <p className="text-lightgray">Not a user yet? <Link to={data.optionPath} className="text-highlight underline font-bold"> {data.option} </Link></p>
                 </form>
             </article>

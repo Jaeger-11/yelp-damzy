@@ -5,3 +5,8 @@ export interface AccessProps {
     option: string
     optionPath: string
 }
+
+export interface InputProps {
+    username: string
+    password: string
+}
