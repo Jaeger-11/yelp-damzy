@@ -24,7 +24,7 @@ const Navbar = () => {
 
         <div className="text-lightgray hidden md:block">
           <span className="font-bold"> user </span>
-          <span className="ml-4 hover:text-highlight">Logout</span>
+          <span className="ml-4 hover:text-highlight" >Logout</span>
         </div>
 
         { clicked ? 
