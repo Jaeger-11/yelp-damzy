@@ -9,16 +9,16 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "fire
 
 const Access = (data : AccessProps) => {
     const navigate = useNavigate();
-    const [ userData, setUserData ] = useState<InputProps>({username:"", password:""});
+    const [ userData, setUserData ] = useState<InputProps>({email:"", password:""});
 
     const handleInput = ({target}: React.ChangeEvent<HTMLInputElement>) => {
-        let newUserData = { [target.name] : [target.value] }
+        let newUserData = { [target.name] : target.value }
         setUserData({...userData, ...newUserData})
     }
 
     const handleLoginSubmit = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth, userData.username, userData.password)
+        signInWithEmailAndPassword(auth, userData.email[0], userData.password[0])
           .then((userCredential) => {
             const user = userCredential.user
             navigate('/campgrounds')
@@ -32,7 +32,7 @@ const Access = (data : AccessProps) => {
 
     const handleSignupSubmit = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        createUserWithEmailAndPassword(auth, userData.username, userData.password)
+        createUserWithEmailAndPassword(auth, userData.email[0], userData.password[0])
             .then((userCredential) => {
                 const user = userCredential.user
                 console.log(user)
@@ -57,8 +57,8 @@ const Access = (data : AccessProps) => {
                 <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">Start exploring camps from all around the world.</h2>
                 <form className="my-6">
                     <div>
-                        <label htmlFor="username">Username</label> <br />
-                        <input type="text" placeholder="username" id="username" name="username" 
+                        <label htmlFor="email">Email</label> <br />
+                        <input type="text" placeholder="email" id="email" name="email" 
                         onChange={handleInput}
                         className="p-3 my-2 w-full text-lightgray focus:outline-none bg-gray-100"/>
                     </div>
@@ -66,6 +66,7 @@ const Access = (data : AccessProps) => {
                         <label htmlFor="password">Password</label> <br />
                         <input type="password" name="password" id="password" placeholder="Enter Your Password" 
                         onChange={handleInput}
+                        min={8}
                         className="p-3 my-2 w-full text-lightgray focus:outline-none bg-gray-100"/>
                     </div>
 

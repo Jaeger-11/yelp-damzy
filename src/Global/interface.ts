@@ -7,6 +7,10 @@ export interface AccessProps {
 }
 
 export interface InputProps {
-    username: string
+    email: string
     password: string
+}
+
+export type AppContextType = {
+    user: string;
 }
