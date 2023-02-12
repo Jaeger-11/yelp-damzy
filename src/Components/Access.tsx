@@ -18,7 +18,7 @@ const Access = (data : AccessProps) => {
 
     const handleLoginSubmit = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        signInWithEmailAndPassword(auth, userData.email[0], userData.password[0])
+        signInWithEmailAndPassword(auth, userData.email, userData.password)
           .then((userCredential) => {
             const user = userCredential.user
             navigate('/campgrounds')
@@ -32,7 +32,8 @@ const Access = (data : AccessProps) => {
 
     const handleSignupSubmit = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        createUserWithEmailAndPassword(auth, userData.email[0], userData.password[0])
+        console.log(userData)
+        createUserWithEmailAndPassword(auth, userData.email, userData.password)
             .then((userCredential) => {
                 const user = userCredential.user
                 console.log(user)
