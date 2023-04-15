@@ -5,7 +5,7 @@ const Login = () => {
   const loginProps = {
     text : 'Login',
     option : 'Create an account',
-    functionName: "signin",
+    functionName: "login",
     optionPath: "/signup"
   }
   

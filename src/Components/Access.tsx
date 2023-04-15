@@ -5,7 +5,7 @@ import userTestimonial from "../assets/User-Testimonial.svg";
 import { AccessProps, InputProps } from "../Global/interface";
 import React, {useState} from 'react';
 import { auth } from "../Database/config";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword} from "firebase/auth";
 
 const Access = (data : AccessProps) => {
     const navigate = useNavigate();
@@ -59,7 +59,7 @@ const Access = (data : AccessProps) => {
                 <form className="my-6">
                     <div>
                         <label htmlFor="email">Email</label> <br />
-                        <input type="text" placeholder="email" id="email" name="email" 
+                        <input type="text" placeholder="Email" id="email" name="email" 
                         onChange={handleInput}
                         className="p-3 my-2 w-full text-lightgray focus:outline-none bg-gray-100"/>
                     </div>
