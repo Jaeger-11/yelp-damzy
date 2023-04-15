@@ -36,19 +36,28 @@ const Navbar = () => {
         :
         <div className="text-lightgray hidden md:block">
           <span className="font-bold"> {state.user} </span>
-          <span className="ml-4 cursor-pointer hover:text-highlight" onClick={logOut}>Logout</span>
+          <span className="ml-4 cursor-pointer font-bold hover:text-highlight" onClick={logOut}>Logout</span>
         </div>
         }
         { clicked ? 
-        <img src={close} alt="close" onClick={toggleClicked}/> : 
-        <img src={hamburger} alt="hamburger menu" className=" p-1 bg-[#f5f1ec] md:hidden" onClick={toggleClicked}/> 
+        <img src={close} alt="close" onClick={toggleClicked} className=" cursor-pointer md:hidden"/> : 
+        <img src={hamburger} alt="hamburger menu" className=" p-1 bg-[#f5f1ec] cursor-pointer md:hidden" onClick={toggleClicked}/> 
         }
 
-        { clicked ? <section className="absolute flex text-center px-4 py-8 flex-col text-black gap-6 rounded-md top-4 right-4 w-max bg-[#f5f1ec] md:hidden">
-        <img src={close} alt="close menu" className=" absolute top-3 w-3 h-3 right-3 md:top-6 md:right-6 md:hidden" onClick={toggleClicked}/> 
-          <p> <Link to='/'>Home</Link> </p>
-          <p> <Link to='/login'> Login </Link> </p>
-          <p> <Link to='/signup' className="text-white bg-black p-4 rounded-md hover:text-highlight">Create an account</Link> </p>
+        { clicked ? 
+        <section className="absolute flex text-center px-8 py-8 flex-col text-[#f5f1ec] gap-6 rounded-md top-4 right-8 w-max bg-black md:hidden">
+          <img src={close} alt="close menu" className="cursor-pointer absolute top-3 w-3 h-3 right-3 md:top-6 md:right-6 md:hidden" onClick={toggleClicked}/> 
+          <p> <Link to='/' className="font-bold hover:text-highlight">Home</Link> </p>
+          { !state.user ? 
+            <>
+              <p> <Link to='/login' className="font-bold hover:text-highlight"> Login </Link> </p>
+              <p> <Link to='/signup' className="text-black bg-highlight p-4 rounded-md hover:text-white">Create an account</Link> </p>
+            </> :
+            <>
+              <p className="font-bold"> {state.user} </p>
+              <p className="cursor-pointer font-bold hover:text-highlight" onClick={logOut}>Logout</p>
+            </>
+          }
         </section> : null }
     </nav>
   )

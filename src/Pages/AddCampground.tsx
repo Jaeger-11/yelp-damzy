@@ -27,7 +27,8 @@ const AddCampground = () => {
         }, (err) => {
             setMessage("error occured:" + err)
         }, () => {
-            getDownloadURL(uploadImage.snapshot.ref).then((downloadURL: string) => {
+            getDownloadURL(uploadImage.snapshot.ref)
+            .then((downloadURL: string) => {
                 setCampInfo({...campInfo, imageUrl: downloadURL})
                 console.log('File available at', downloadURL, campInfo);
               });
@@ -41,7 +42,7 @@ const AddCampground = () => {
                 setMessage("Sorry, you need to sign in")
                 navigate('/login')
             } else if ( !name || !imageUrl || !description || !price ){
-                setMessage("All Fields are Required")
+                setMessage("All Fields are Required*")
             } else {
             const docRef = await addDoc(collection(cloudDB, 'campgrounds'), {
             ...campInfo, createdBy: state.user.substring(0, state.user.indexOf('@')), uid: state.uid
@@ -75,9 +76,9 @@ const AddCampground = () => {
                 </div>
                 <div>
                     <label htmlFor="description" className='text-lightgray'>Description</label> <br />
-                    <textarea name="description" required id="description" onChange={handleChange} rows={8} className="bg-gray-100 p-3 w-full rounded-sm my-2 focus:outline-none "></textarea>
+                    <textarea name="description" required id="description" onChange={handleChange} rows={8} className="bg-gray-100 p-3 text-lightgray w-full rounded-sm my-2 focus:outline-none "></textarea>
                 </div>
-                <div> <p className=" text-red-600 font-bold italic">{message}*</p> </div>
+                <div> <p className=" text-red-600 font-bold italic">{message}</p> </div>
                 <button onClick={handleSubmit} className="text-white bg-black p-4 w-full font-bold rounded-md my-4 hover:translate-x-1"> Add Campground </button>
             </form>
         </main>

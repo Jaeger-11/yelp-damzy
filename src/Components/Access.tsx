@@ -10,6 +10,7 @@ import { signInWithEmailAndPassword, createUserWithEmailAndPassword} from "fireb
 const Access = (data : AccessProps) => {
     const navigate = useNavigate();
     const [ userData, setUserData ] = useState<InputProps>({email:"", password:""});
+    const [alertError, setAlertError] = useState<string>();
 
     const handleInput = ({target}: React.ChangeEvent<HTMLInputElement>) => {
         let newUserData = { [target.name] : target.value }
@@ -26,7 +27,7 @@ const Access = (data : AccessProps) => {
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            alert([errorCode, errorMessage])
+            setAlertError(errorMessage);
           });
     }
 
@@ -42,7 +43,7 @@ const Access = (data : AccessProps) => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                alert([errorCode, errorMessage])
+                setAlertError(errorMessage);
               });
     }
 
@@ -70,7 +71,7 @@ const Access = (data : AccessProps) => {
                         min={8}
                         className="p-3 my-2 w-full text-lightgray focus:outline-none bg-gray-100"/>
                     </div>
-
+                    <p className="text-red-600 font-bold">{alertError}</p>
                     <button onClick={data.functionName === 'login' ? handleLoginSubmit : handleSignupSubmit} className="text-white bg-black p-4 w-full font-bold rounded-md my-4 hover:translate-x-1"> {data.text} </button>
                     <p className="text-lightgray">Not a user yet? <Link to={data.optionPath} className="text-highlight underline font-bold"> {data.option} </Link></p>
                 </form>
