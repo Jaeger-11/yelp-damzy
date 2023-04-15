@@ -21,11 +21,9 @@ const Access = (data : AccessProps) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, userData.email, userData.password)
           .then((userCredential) => {
-            const user = userCredential.user
             navigate('/campgrounds')
           })
           .catch((error) => {
-            const errorCode = error.code;
             const errorMessage = error.message;
             setAlertError(errorMessage);
           });
@@ -36,12 +34,9 @@ const Access = (data : AccessProps) => {
         console.log(userData)
         createUserWithEmailAndPassword(auth, userData.email, userData.password)
             .then((userCredential) => {
-                const user = userCredential.user
-                console.log(user)
                 navigate('/campgrounds')
             })
             .catch((error) => {
-                const errorCode = error.code;
                 const errorMessage = error.message;
                 setAlertError(errorMessage);
               });

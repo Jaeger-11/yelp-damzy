@@ -2,9 +2,12 @@ import React from 'react'
 import Navbar from '../Components/Navbar';
 import Logo from '../Components/Logo';
 import { Link } from 'react-router-dom';
-import searchIcon from '../assets/Search-Icon.svg'
+import searchIcon from '../assets/Search-Icon.svg';
+import { getCampgrounds } from '../Hooks/useFirestore';
 
 const Campgrounds = () => {
+  const {camps} = getCampgrounds();
+  
   return (
     <div className='mx-auto font-archivo px-4 pb-4 text-lightgray sm:px-8 md:px-0 md:container'>
       <Navbar/>
@@ -22,6 +25,14 @@ const Campgrounds = () => {
         </form>
         <Link to='/addcampground' className='underline text-sm md:text-base hover:text-highlight'>Or add your own campground</Link>
       </main>
+
+      <section>
+        {camps && camps.map((camp: object) => {
+          
+          console.log(camp)
+        })}
+      </section>
+
       <Logo />
     </div>
   )

@@ -30,15 +30,16 @@ const Navbar = () => {
 
         { !state.user ? 
         <div className="hidden md:block">
-            <Link to='/login' className="hover:text-highlight"> Login </Link>
+            <Link to='/login' className="hover:text-highlight font-bold"> Login </Link>
             <Link to='/signup' className="text-white bg-black p-4 rounded-md ml-4 hover:text-highlight">Create an account</Link>
         </div>
         :
         <div className="text-lightgray hidden md:block">
-          <span className="font-bold"> {state.user} </span>
+          <span className="font-bold text-gray-800"> {state.user} </span>
           <span className="ml-4 cursor-pointer font-bold hover:text-highlight" onClick={logOut}>Logout</span>
         </div>
         }
+
         { clicked ? 
         <img src={close} alt="close" onClick={toggleClicked} className=" cursor-pointer md:hidden"/> : 
         <img src={hamburger} alt="hamburger menu" className=" p-1 bg-[#f5f1ec] cursor-pointer md:hidden" onClick={toggleClicked}/> 
@@ -54,7 +55,7 @@ const Navbar = () => {
               <p> <Link to='/signup' className="text-black bg-highlight p-4 rounded-md hover:text-white">Create an account</Link> </p>
             </> :
             <>
-              <p className="font-bold"> {state.user} </p>
+              <p className="font-bold text-gray-400"> {state.user} </p>
               <p className="cursor-pointer font-bold hover:text-highlight" onClick={logOut}>Logout</p>
             </>
           }
