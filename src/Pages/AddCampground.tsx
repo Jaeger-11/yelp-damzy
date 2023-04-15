@@ -34,18 +34,22 @@ const AddCampground = () => {
         })
     }
     const handleSubmit = async (e:React.MouseEvent<HTMLButtonElement>) => {
-        const { name, imageUrl, description, price } = campInfo
-        if ( !name || !imageUrl || !description || !price ){
-            setMessage("All Fields are Required")
-        }
         e.preventDefault()
-        try {const docRef = await addDoc(collection(cloudDB, 'campgrounds'), {
-            ...campInfo, createdBy: state.user, uid: state.uid
-        })
-        navigate('/campgrounds')
-        console.log( " dOC REF ID IS " + docRef.id)}
-        catch(err){
-            console.log(err)
+        const { name, imageUrl, description, price } = campInfo;
+        try {
+            if ( !state.user ){
+                setMessage("Sorry, you need to sign in")
+                navigate('/login')
+            } else if ( !name || !imageUrl || !description || !price ){
+                setMessage("All Fields are Required")
+            } else {
+            const docRef = await addDoc(collection(cloudDB, 'campgrounds'), {
+            ...campInfo, createdBy: state.user.substring(0, state.user.indexOf('@')), uid: state.uid
+            })
+            docRef.id ? navigate('/campgrounds') : undefined
+            console.log( " dOC REF ID IS " + docRef.id)}
+        } catch(err){
+            setMessage("error occured: " + err)
         }
     }
   return (
@@ -60,7 +64,7 @@ const AddCampground = () => {
                     className="p-3 my-2 w-full text-lightgray focus:outline-none rounded-sm bg-gray-100 md:"/>
                 </div>
                 <div>
-                    <label htmlFor="price" className='text-lightgray'>Price</label> <br />
+                    <label htmlFor="price" className='text-lightgray'>Price Per Night ($)</label> <br />
                     <input type="text" id="price" required name="price" onChange={handleChange}
                     className="p-3 my-2 w-full text-lightgray focus:outline-none rounded-sm bg-gray-100 md:"/>
                 </div>
@@ -71,7 +75,7 @@ const AddCampground = () => {
                 </div>
                 <div>
                     <label htmlFor="description" className='text-lightgray'>Description</label> <br />
-                    <textarea name="description" required id="description" onChange={handleChange} rows={8} className="bg-gray-100 w-full rounded-sm my-2 focus:outline-none "></textarea>
+                    <textarea name="description" required id="description" onChange={handleChange} rows={8} className="bg-gray-100 p-3 w-full rounded-sm my-2 focus:outline-none "></textarea>
                 </div>
                 <div> <p className=" text-red-600 font-bold italic">{message}*</p> </div>
                 <button onClick={handleSubmit} className="text-white bg-black p-4 w-full font-bold rounded-md my-4 hover:translate-x-1"> Add Campground </button>
