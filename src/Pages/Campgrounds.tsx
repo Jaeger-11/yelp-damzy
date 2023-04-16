@@ -4,6 +4,7 @@ import Logo from '../Components/Logo';
 import { Link } from 'react-router-dom';
 import searchIcon from '../assets/Search-Icon.svg';
 import { getCampgrounds } from '../Hooks/useFirestore';
+import { campgroundType } from '../Global/interface';
 
 const Campgrounds = () => {
   const {camps} = getCampgrounds();
@@ -26,10 +27,18 @@ const Campgrounds = () => {
         <Link to='/addcampground' className='underline text-sm md:text-base hover:text-highlight'>Or add your own campground</Link>
       </main>
 
-      <section>
-        {camps && camps.map((camp: object) => {
-          
-          console.log(camp)
+      <section className='md:grid grid-cols-3 gap-4'>
+        {camps && camps.map((camp: campgroundType) => {
+          const { name, imageUrl, description, price } = camp;
+          console.log(imageUrl)
+          return (
+            <div className='p-4 border border-1 my-4'>
+              <img src={imageUrl} alt={name} />
+              <h4 className='font-bold text-black mt-2'>{name}</h4>
+              <p className='my-2'> { description.substring(0, 70) }... </p>
+              <button className='text-black font-bold w-full p-3 border border-1 rounded-md'>View Campground</button>
+            </div>
+          )
         })}
       </section>
 

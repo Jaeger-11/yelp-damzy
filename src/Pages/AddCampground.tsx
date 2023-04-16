@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Logo from "../Components/Logo";
 import Navbar from "../Components/Navbar";
 import { addDoc, collection } from "firebase/firestore";
-import { uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { cloudDB, imagesRef } from "../Database/config";
+import { uploadBytesResumable, getDownloadURL, ref } from "firebase/storage";
+import { cloudDB, storage } from "../Database/config";
 import { campgroundType } from "../Global/interface";
 import { useGlobalContext } from "../Global/Context";
 import { useNavigate } from "react-router-dom";
@@ -21,7 +21,7 @@ const AddCampground = () => {
     const handleImage = ({target}: React.ChangeEvent<HTMLInputElement>) => {
         const file = target.files
         if (file) setImageData(file[0])
-        const uploadImage = uploadBytesResumable(imagesRef, imageData);
+        const uploadImage = uploadBytesResumable(ref(storage, imageData.name), imageData);
         uploadImage.on('state_changed', (snapshot) => {
             const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
         }, (err) => {
