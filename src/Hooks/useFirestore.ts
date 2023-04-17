@@ -1,7 +1,7 @@
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import { collection, onSnapshot, orderBy, query, doc, getDoc } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { cloudDB } from "../Database/config";
-import { campgroundType } from "../Global/interface"
+import { campgroundType } from "../Global/interface";
 
 const getCampgrounds = () => {
     const [camps, setCamps] = useState<any>([]);
@@ -25,4 +25,32 @@ const getCampgrounds = () => {
     return {camps};
 } 
 
-export { getCampgrounds }
+type campType = {
+    name: string
+    price: string
+    imageUrl: string 
+    description: string
+    uid: string
+}
+
+const getCampground = (id: string) => {
+    const [camp, setCamp] = useState<campType | any>();
+    const docRef = doc(cloudDB, 'campgrounds', id)
+    const docSnap = async () => {
+        const info = await getDoc(docRef)
+        if (info.exists()) {
+            const data= info.data();
+            setCamp(data)
+            return {camp};
+            } else {
+            console.log("No such document!");
+        }
+    }
+    useEffect(() => {
+        docSnap();
+    }, [])
+    
+    return { ...camp }
+}
+
+export { getCampgrounds, getCampground }

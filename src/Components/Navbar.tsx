@@ -17,7 +17,7 @@ const Navbar = () => {
     signOut(auth).then(() => {
         dispatch({type:'RESET'});
       }).catch((error) => {
-        console.log(error)
+        
     });
 }
 

@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 const AddCampground = () => {
     const navigate = useNavigate()
     const { state } = useGlobalContext();
-    const [ campInfo, setCampInfo ] = useState<campgroundType>({name:'', price:'', imageUrl:'', description:''})
+    const [ campInfo, setCampInfo ] = useState<campgroundType>({name:'', price:'', imageUrl:'', description:'', id:''})
     const [ imageData, setImageData ] = useState<any>()
     const [ message, setMessage ] = useState<string>()
 
@@ -30,7 +30,6 @@ const AddCampground = () => {
             getDownloadURL(uploadImage.snapshot.ref)
             .then((downloadURL: string) => {
                 setCampInfo({...campInfo, imageUrl: downloadURL})
-                console.log('File available at', downloadURL, campInfo);
               });
         })
     }
@@ -48,7 +47,7 @@ const AddCampground = () => {
             ...campInfo, createdBy: state.user.substring(0, state.user.indexOf('@')), uid: state.uid
             })
             docRef.id ? navigate('/campgrounds') : undefined
-            console.log( " dOC REF ID IS " + docRef.id)}
+            }
         } catch(err){
             setMessage("error occured: " + err)
         }

@@ -16,11 +16,11 @@ export type campgroundType = {
         price: string
         imageUrl: string 
         description: string
+        id: string
 }
 export type InitialStateType = {
     user: string
     uid: string
-    campgroundData: campgroundType
 }
 
 export type ActionType = {

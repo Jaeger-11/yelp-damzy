@@ -11,9 +11,8 @@ const AddComment = () => {
             <form className='py-4 sm:w-2/3 md:mx-auto'>
                 <div>
                     <label htmlFor="description" className='text-lightgray'>Description</label> <br />
-                    <textarea name="description" id="description" rows={8} className="bg-gray-100 w-full rounded-sm my-2 focus:outline-none "></textarea>
+                    <textarea name="description" id="description" rows={8} className="bg-gray-100 p-4 w-full rounded-sm my-2 focus:outline-none "></textarea>
                 </div>
-
                 <button className="text-white bg-black p-4 w-full font-bold rounded-md my-4 hover:translate-x-1"> Post Comment </button>
             </form>
         </main>

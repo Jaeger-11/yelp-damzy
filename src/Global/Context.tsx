@@ -6,14 +6,8 @@ import { onAuthStateChanged } from 'firebase/auth';
 
 const defaultState = {
   user: "",
+  uid:"",
   setUser: (user: string) => {},
-  uid: "",
-  campgroundData: {
-    name: '',
-    price: '',
-    imageUrl: '',
-    description: ''
-  }
 }
 
 const AppContext = React.createContext<

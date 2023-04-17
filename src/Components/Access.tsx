@@ -31,7 +31,6 @@ const Access = (data : AccessProps) => {
 
     const handleSignupSubmit = (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
-        console.log(userData)
         createUserWithEmailAndPassword(auth, userData.email, userData.password)
             .then((userCredential) => {
                 navigate('/campgrounds')

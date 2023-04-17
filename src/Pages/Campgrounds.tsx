@@ -8,7 +8,7 @@ import { campgroundType } from '../Global/interface';
 
 const Campgrounds = () => {
   const {camps} = getCampgrounds();
-  
+
   return (
     <div className='mx-auto font-archivo px-4 pb-4 text-lightgray sm:px-8 md:px-0 md:container'>
       <Navbar/>
@@ -27,16 +27,15 @@ const Campgrounds = () => {
         <Link to='/addcampground' className='underline text-sm md:text-base hover:text-highlight'>Or add your own campground</Link>
       </main>
 
-      <section className='md:grid grid-cols-3 gap-4'>
+      <section className='sm:grid smd:grid-cols-2 md:grid-cols-3 gap-4'>
         {camps && camps.map((camp: campgroundType) => {
-          const { name, imageUrl, description, price } = camp;
-          console.log(imageUrl)
+          const { name, imageUrl, description, price, id } = camp;
           return (
-            <div className='p-4 border border-1 my-4'>
-              <img src={imageUrl} alt={name} />
+            <div key={id} className='p-4 border border-1 my-2 hover:opacity-70'>
+              <img src={imageUrl} alt={name} className="rounded-md" />
               <h4 className='font-bold text-black mt-2'>{name}</h4>
               <p className='my-2'> { description.substring(0, 70) }... </p>
-              <button className='text-black font-bold w-full p-3 border border-1 rounded-md'>View Campground</button>
+              <Link to='/campground' state={id}> <button className='text-black font-bold w-full p-3 border border-1 hover:text-gray-500 rounded-md'>View Campground</button> </Link>
             </div>
           )
         })}
