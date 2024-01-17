@@ -38,7 +38,7 @@ const Access = (data : AccessProps) => {
             .catch((error) => {
                 const errorMessage = error.message;
                 setAlertError(errorMessage);
-              });
+            });
     }
 
   return (
@@ -46,7 +46,7 @@ const Access = (data : AccessProps) => {
         <section className="p-4 font-archivo sm:p-8 md:relative md:flex md:justify-center md:items-center md:flex-[60%] md:p-0">
             <div className=" flex justify-between items-center mb-4 md:absolute md:top-4 md:w-[90%] lg:w-3/4">
                 <Logo />
-                <Link to='/campgrounds'><p className="flex gap-1 items-center text-lightgray text-sm md:text-base"> <img src={arrowleft} alt="icons8-arrow-left-25" className="w-4 h-4"/>  <span>Back to campgrounds</span> </p></Link>
+                <Link to='/campgrounds'><p className="flex gap-1 items-center text-lightgray text-sm md:text-base hover:text-highlight hover:font-[600] transition-all"> <img src={arrowleft} alt="icons8-arrow-left-25" className="w-4 h-4"/>  <span>Back to campgrounds</span> </p></Link>
             </div>
 
             <article className="md:w-[90%] lg:w-3/4">
@@ -66,8 +66,8 @@ const Access = (data : AccessProps) => {
                         className="p-3 my-2 w-full text-lightgray focus:outline-none bg-gray-100"/>
                     </div>
                     <p className="text-red-600 font-bold">{alertError}</p>
-                    <button onClick={data.functionName === 'login' ? handleLoginSubmit : handleSignupSubmit} className="text-white bg-black p-4 w-full font-bold rounded-md my-4 hover:translate-x-1"> {data.text} </button>
-                    <p className="text-lightgray">Not a user yet? <Link to={data.optionPath} className="text-highlight underline font-bold"> {data.option} </Link></p>
+                    <button onClick={data.functionName === 'login' ? handleLoginSubmit : handleSignupSubmit} className="text-white bg-black p-4 w-full font-bold rounded-md my-4 hover:scale-x-95 transition-all"> {data.text} </button>
+                    <p className="text-lightgray">Not a user yet? <Link to={data.optionPath} className="text-highlight underline font-bold transition-all hover:text-black"> {data.option} </Link></p>
                 </form>
             </article>
             

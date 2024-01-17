@@ -25,18 +25,18 @@ const Navbar = () => {
     <nav className=" mx-auto font-archivo text-lightgray flex justify-between items-center my-4 md:my-6 md:px-0">
         <div className="flex gap-6 items-center">
             <Logo />
-            <Link to='/' className="hidden font-bold md:block hover:text-highlight">Home</Link>
+            <Link to='/' className="hidden font-bold md:block hover:text-highlight transition-all">Home</Link>
         </div>
 
         { !state.user ? 
         <div className="hidden md:block">
-            <Link to='/login' className="hover:text-highlight font-bold"> Login </Link>
-            <Link to='/signup' className="text-white bg-black p-4 rounded-md ml-4 hover:text-highlight">Create an account</Link>
+            <Link to='/login' className="hover:text-highlight font-bold transition-all"> Login </Link>
+            <Link to='/signup' className="text-white bg-black p-4 rounded-md ml-4 hover:px-5 transition-all">Create an account</Link>
         </div>
         :
         <div className="text-lightgray hidden md:block">
           <span className="font-bold text-gray-800"> {state.user} </span>
-          <span className="ml-4 cursor-pointer font-bold hover:text-highlight" onClick={logOut}>Logout</span>
+          <span className="ml-4 cursor-pointer font-bold hover:text-highlight transition-all" onClick={logOut}>Logout</span>
         </div>
         }
 

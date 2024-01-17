@@ -6,7 +6,7 @@ import Campgrounds from './Pages/Campgrounds';
 import Signup from './Pages/Signup'; 
 import AddCampground from './Pages/AddCampground';
 import AddComment from './Pages/AddComment';
-import Campground from './Components/Campground';
+import Campground from './Pages/Campground';
 
 function App() {
 

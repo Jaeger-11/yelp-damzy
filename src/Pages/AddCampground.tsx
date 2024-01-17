@@ -12,26 +12,27 @@ const AddCampground = () => {
     const navigate = useNavigate()
     const { state } = useGlobalContext();
     const [ campInfo, setCampInfo ] = useState<campgroundType>({name:'', price:'', imageUrl:'', description:'', id:''})
-    const [ imageData, setImageData ] = useState<any>()
     const [ message, setMessage ] = useState<string>()
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setCampInfo({...campInfo, [e.target.name] : e.target.value})
     }
     const handleImage = ({target}: React.ChangeEvent<HTMLInputElement>) => {
-        const file = target.files
-        if (file) setImageData(file[0])
-        const uploadImage = uploadBytesResumable(ref(storage, imageData.name), imageData);
-        uploadImage.on('state_changed', (snapshot) => {
-            const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        }, (err) => {
-            setMessage("error occured:" + err)
-        }, () => {
-            getDownloadURL(uploadImage.snapshot.ref)
-            .then((downloadURL: string) => {
-                setCampInfo({...campInfo, imageUrl: downloadURL})
-              });
-        })
+        if( target.files){
+            let imageData = target.files[0]
+            console.log(imageData?.name)
+            const uploadImage = uploadBytesResumable(ref(storage, imageData?.name), imageData);
+            uploadImage.on('state_changed', (snapshot) => {
+                const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            }, (err) => {
+                setMessage("error occured:" + err)
+            }, () => {
+                getDownloadURL(uploadImage.snapshot.ref)
+                .then((downloadURL: string) => {
+                    setCampInfo({...campInfo, imageUrl: downloadURL})
+                });
+            })
+        }
     }
     const handleSubmit = async (e:React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
