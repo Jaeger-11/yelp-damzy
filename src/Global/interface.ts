@@ -1,3 +1,4 @@
+import { Timestamp } from "firebase/firestore"
 import React from "react"
 
 export interface AccessProps {
@@ -12,11 +13,16 @@ export interface InputProps {
     password: string
 }
 export type campgroundType = {
-        name: string
-        price: string
-        imageUrl: string 
-        description: string
-        id: string
+    name: string
+    price: string
+    imageUrl: string 
+    description: string
+    id: string
+}
+export type commentType = {
+    comment: string,
+    commentedBy: string,
+    created: Timestamp
 }
 export type InitialStateType = {
     user: string
