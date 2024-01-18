@@ -22,7 +22,8 @@ export type campgroundType = {
 export type commentType = {
     comment: string,
     commentedBy: string,
-    created: Timestamp
+    created: Timestamp,
+    id: string
 }
 export type InitialStateType = {
     user: string

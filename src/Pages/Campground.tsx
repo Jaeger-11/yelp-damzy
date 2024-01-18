@@ -50,9 +50,9 @@ const Campground = () => {
                     {/* COMMENTS */}
                     <section className="flex flex-col gap-3">
                         {comments && comments.map((comm:commentType) => {
-                            const {comment, commentedBy, created} = comm;
+                            const {comment, commentedBy, created, id} = comm;
                             return(
-                                <div className="pb-2 border-b-[1px]">
+                                <div key={id} className="pb-2 border-b-[1px]">
                                     <div className="flex justify-between items-center mb-2">
                                         <h4 className="text-black font-bold capitalize">{commentedBy}</h4>
                                         <p className="text-sm">{convertTimestamp(created)}</p>
