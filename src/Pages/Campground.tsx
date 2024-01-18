@@ -17,7 +17,7 @@ const Campground = () => {
         let today = new Date()
         let diff = today.getTime()/1000 - timestamp.seconds
         if (diff < 60) {
-            return `${diff} seconds ago`;
+            return `${(diff).toFixed(0)} seconds ago`;
         } else if (diff < 3600) {
             return `${(diff / 60).toFixed(0)} minutes ago`;
         } else if (diff < 86400) {
